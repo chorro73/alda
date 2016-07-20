@@ -29,7 +29,8 @@
   [stock-inst & attrs]
   (if-let [{:keys [initial-vals]} (*stock-instruments* stock-inst)]
     (merge *initial-attr-vals*
-           {:id (generate-id stock-inst)}
+           {:invoked-as stock-inst
+            :id         (generate-id stock-inst)}
            initial-vals
            (apply hash-map attrs))
     (throw (Exception.
